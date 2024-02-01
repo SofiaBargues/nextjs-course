@@ -139,7 +139,7 @@ const api = {
     // Obtenemos la información de Google Sheets en formato texto y la dividimos por líneas, nos saltamos la primera línea porque es el encabezado
     const [, ...data] = await fetch(
       "https://docs.google.com/spreadsheets/d/e/2PACX-1vRJVXjh6d7DGNMoJS3SJ9Gg5biRDRJ3jFS4oDiCnncdp076ZAuVOFNBli_xfybIQB94deGt2ltNSbPT/pub?output=csv",
-      // { cache: "no-store" },
+      { next: { tags: ["restaurants"] } },
     )
       .then((res) => res.text())
       .then((text) => text.split("\n"));
@@ -173,6 +173,19 @@ const api = {
     }
 
     return restaurant;
+  },
+
+  search: async (query: string): Promise<Restaurant[]> => {
+    // Obtenemos los restaurantes
+    const results = await api.list().then((restaurants) =>
+      // Los filtramos por nombre
+      restaurants.filter((restaurant) =>
+        restaurant.name.toLowerCase().includes(query.toLowerCase()),
+      ),
+    );
+
+    // Los retornamos
+    return results;
   },
 };
 
