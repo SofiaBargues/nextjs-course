@@ -28,7 +28,7 @@ export default async function Home({
           Search
         </button>
       </form>
-      <section className="grid grid-cols-1 gap-12 md:gr id-cols-3">
+      <section className="grid grid-cols-1 gap-12 md:grid-cols-3">
         {restaurants.map((restaurant) => {
           return <RestaurantCard key={restaurant.id} restaurant={restaurant} />;
         })}

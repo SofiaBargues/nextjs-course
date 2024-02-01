@@ -15,9 +15,8 @@ function FavoriteButton({
     ratings: number;
   };
 }) {
-  const isFavourite = window.localStorage
-    .getItem("favorites")
-    ?.includes(restaurant.id);
+  const isFavourite =
+    window && window.localStorage.getItem("favorites")?.includes(restaurant.id);
 
   return (
     <button
@@ -45,9 +44,8 @@ export default function RestaurantCard({
     ratings: number;
   };
 }) {
-  const isFavourite = window.localStorage
-    .getItem("favorites")
-    ?.includes(restaurant.id);
+  const isFavourite =
+    window && window.localStorage.getItem("favorites")?.includes(restaurant.id);
 
   return (
     <article>
