@@ -8,7 +8,7 @@ export default async function Home({
 }: {
   searchParams: { q: string };
 }) {
-  const restaurants = await api.search(searchParams.q);
+  const restaurants = await api.search(searchParams.q ?? "");
 
   async function searchAction(formData: FormData) {
     "use server";
